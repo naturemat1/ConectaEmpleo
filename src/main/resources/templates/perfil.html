@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Mi Perfil</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}" />
+    </head>
+    <body>
+        <div class="container">
+            <h1>Mi Perfil</h1>
+
+            <!-- Mostrar nombre del usuario -->
+            <p><strong>Bienvenido:</strong> <span th:text="${session.usuarioLogueado.nombre}"></span></p>
+
+            <!-- Sección de postulaciones -->
+            <h2>Mis Postulaciones</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID Trabajo</th>
+                        <th>Título</th>
+                        <th>Fecha de Postulación</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="p : ${postulaciones}">
+                        <td th:text="${p.trabajo.id}"></td>
+                        <td th:text="${p.trabajo.titulo}"></td>
+                        <td th:text="${p.fechaPostulacion}"></td>
+                        <td th:text="${p.estado}"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Sección de inscripciones -->
+            <h2>Mis Inscripciones</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID Capacitación</th>
+                        <th>Título</th>
+                        <th>Fecha de Inscripción</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="i : ${inscripciones}">
+                        <td th:text="${i.capacitacion.id}"></td>
+                        <td th:text="${i.capacitacion.titulo}"></td>
+                        <td th:text="${i.capacitacion.fecha}"></td>
+                        <td th:text="${i.calificacionAlumno}"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <br/>
+        </div>
+        <a th:href="@{/trabajo}" class="btn-secondary">Volver a empleos</a>
+    </body>
+</html>

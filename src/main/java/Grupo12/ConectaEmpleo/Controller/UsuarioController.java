@@ -4,9 +4,14 @@ package Grupo12.ConectaEmpleo.Controller;
  *
  * @author Home
  */
+import Grupo12.ConectaEmpleo.Model.ParticipanteCapacitacion;
+import Grupo12.ConectaEmpleo.Model.Postulacion;
 import Grupo12.ConectaEmpleo.Model.Usuario;
+import Grupo12.ConectaEmpleo.Service.ParticipanteCapacitacionService;
+import Grupo12.ConectaEmpleo.Service.PostulacionService;
 import Grupo12.ConectaEmpleo.Service.UsuarioService;
 import jakarta.servlet.http.HttpSession;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +23,12 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
+    @Autowired
+    private PostulacionService postulacionService;
+    @Autowired
+    private ParticipanteCapacitacionService inscripcionService;
+    
+    
 
     @GetMapping("/registro")
     public String mostrarFormularioRegistro(Model model) {
@@ -57,6 +68,22 @@ public class UsuarioController {
             model.addAttribute("error", "Correo o contraseña incorrectos");
             return "login";
         }
+    }
+    
+     @GetMapping("/perfil")
+    public String mostrarPerfil(HttpSession session, Model model) {
+        Usuario usuario = (Usuario) session.getAttribute("usuarioLogueado");
+        if (usuario == null) {
+            return "redirect:/usuario/login";
+        }
+
+        List<Postulacion> postulaciones = postulacionService.findByTrabajador(usuario);
+        List<ParticipanteCapacitacion> inscripciones = inscripcionService.findByTrabajador(usuario);
+
+        model.addAttribute("postulaciones", postulaciones);
+        model.addAttribute("inscripciones", inscripciones);
+
+        return "perfil"; // Nombre del template Thymeleaf
     }
 
 }

@@ -248,3 +248,18 @@ card-container {
 .card .cta:hover {
     background-color: #e64a19;
 }
+
+.btn-secondary {
+    background-color: #00bfa6;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-secondary:hover {
+    background-color: #008f7a;
+}
