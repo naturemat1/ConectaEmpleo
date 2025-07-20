@@ -9,6 +9,7 @@
 
         <form th:action="@{/trabajo/calificar}" method="post">
             <input type="hidden" name="trabajoId" th:value="${trabajoId}" />
+
             <label for="puntuacion">Tu calificación (1-5):</label>
             <input type="number" name="puntuacion" min="1" max="5" required>
 

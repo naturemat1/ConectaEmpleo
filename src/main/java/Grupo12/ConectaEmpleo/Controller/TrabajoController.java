@@ -33,8 +33,12 @@ public class TrabajoController {
     }
 
     @PostMapping("/crear")
-    public String crearTrabajo(@ModelAttribute Trabajo trabajo) {
-        trabajoService.guardarTrabajo(trabajo); // Aquí luego puedes asociar al usuario autenticado
+    public String crearTrabajo(@ModelAttribute Trabajo trabajo,
+            HttpSession session) {
+        Usuario usuario = (Usuario) session.getAttribute("usuarioLogueado");
+        trabajo.setSolicitante(usuario);
+
+        trabajoService.guardarTrabajo(trabajo);
         return "redirect:/trabajo"; // redirecciona a lista de empleos
     }
 
@@ -56,11 +60,7 @@ public class TrabajoController {
     }
 
     @PostMapping("/{id}/finalizar")
-    public String finalizarTrabajo(
-            @PathVariable Long id,
-            HttpSession session,
-            RedirectAttributes redirectAttrs) {
-
+    public String finalizarTrabajo(@PathVariable Long id, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuarioLogueado");
         if (usuario == null) {
             return "redirect:/usuario/login";
@@ -68,7 +68,6 @@ public class TrabajoController {
 
         Trabajo trabajo = trabajoService.obtenerPorId(id);
         if (trabajo == null) {
-            redirectAttrs.addFlashAttribute("error", "Trabajo no encontrado.");
             return "redirect:/usuario/perfil";
         }
 
@@ -76,22 +75,13 @@ public class TrabajoController {
         trabajo.setEstado(EstadoTrabajo.FINALIZADO);
         trabajoService.guardarTrabajo(trabajo);
 
-        // Pasar el ID del trabajo al formulario de calificación
-        redirectAttrs.addFlashAttribute("trabajoId", id);
-
-        return "redirect:/trabajo/calificar";
+        // Redirigir directamente al formulario de calificación
+        return "redirect:/trabajo/calificar?id=" + id;
     }
 
     @GetMapping("/calificar")
-    public String mostrarFormularioCalificacion(Model model) {
-        // Obtenemos el trabajoId desde el modelo
-        Long trabajoId = (Long) model.getAttribute("trabajoId");
-
-        if (trabajoId == null) {
-            return "redirect:/usuario/perfil";
-        }
-
-        model.addAttribute("trabajoId", trabajoId);
+    public String mostrarFormularioCalificacion(@RequestParam Long id, Model model) {
+        model.addAttribute("trabajoId", id);
         return "calificar";
     }
 
@@ -99,34 +89,45 @@ public class TrabajoController {
     public String calificarTrabajo(
             @RequestParam Long trabajoId,
             @RequestParam Integer puntuacion,
-            @RequestParam(required = false) String comentario,
-            HttpSession session,
-            RedirectAttributes redirectAttrs) {
+            HttpSession session) {
+
+        System.out.println("=== INICIO DE calificarTrabajo ===");
 
         Usuario usuario = (Usuario) session.getAttribute("usuarioLogueado");
+        System.out.println("Usuario logueado: " + usuario);
+
         if (usuario == null) {
+            System.out.println("Usuario no autenticado.");
             return "redirect:/usuario/login";
         }
 
         Trabajo trabajo = trabajoService.obtenerPorId(trabajoId);
+        System.out.println("Trabajo obtenido: " + trabajo);
+        System.out.println("ID del trabajo: " + trabajoId);
+
         if (trabajo == null) {
-            redirectAttrs.addFlashAttribute("error", "Trabajo no encontrado.");
+            System.out.println("Trabajo no encontrado.");
             return "redirect:/usuario/perfil";
         }
 
         // Califica al trabajador
         Usuario trabajador = trabajo.getSolicitante();
-        if (trabajador != null) {
+        System.out.println("Solicitante: " + trabajador);
+
+        if (trabajo.getSolicitante() != null) {
             usuarioService.actualizarCalificacionPromedio(trabajador, puntuacion);
+            System.out.println("Calificación promedio actualizada.");
         } else {
-            redirectAttrs.addFlashAttribute("error", "No se encontró al trabajador.");
+            System.out.println("No se encontró al solicitante.");
             return "redirect:/usuario/perfil";
         }
 
         // Elimina el trabajo
         trabajoService.eliminar(trabajo);
+        System.out.println("Trabajo eliminado.");
 
-        redirectAttrs.addFlashAttribute("mensaje", "Gracias por tu calificación.");
+        System.out.println("=== FIN DE calificarTrabajo ===");
         return "redirect:/trabajo";
     }
+
 }
