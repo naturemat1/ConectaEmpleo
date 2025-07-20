@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Conecta Empleo</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}" />
+    </head>
+    <body>
+        <header>
+            <div class="logo">Conecta <span style="color:#00e5ff;">Empleo</span></div>
+            <nav>
+                <a th:href="@{/}">Inicio</a>
+                <a th:href="@{/trabajo}">Empleos</a>
+                <a th:href="@{/capacitaciones}">Capacitaciones</a>
+                <a th:href="@{/usuario/registro}">Mi Perfil</a>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <div class="hero-content">
+                <h1>¡Ahora es el momento de cambiar!</h1>
+                <p>Encuentra el empleo que encaja contigo, más de <strong>1.407 ofertas</strong></p>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="💼 Cargo o categoría" />
+                <input type="text" placeholder="📍 Lugar" />
+                <button>🔍 Buscar empleos</button>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="highlight">
+                <h2>🎯 Encuentra microempleos</h2>
+                <p>Explora trabajos informales por categoría y lugar, y postula con confianza.</p>
+                <a class="cta" th:href="@{/trabajo}">Ver ofertas</a>
+            </div>
+
+            <div class="highlight">
+                <h2>📚 Capacítate con otros trabajadores</h2>
+                <p>Aprende nuevas habilidades de manera práctica y recibe certificados informales.</p>
+                <a class="cta" th:href="@{/capacitaciones}">Inscribirse</a>
+            </div>
+
+            <div class="highlight">
+                <h2>🔔 Alta demanda en tu zona</h2>
+                <p>La categoría <strong>Jardinería</strong> está en alta demanda. ¡Capacítate ahora!</p>
+                <a class="cta" th:href="@{/capacitaciones}">Comenzar capacitación</a>
+            </div>
+        </div>
+    </body>
+</html>

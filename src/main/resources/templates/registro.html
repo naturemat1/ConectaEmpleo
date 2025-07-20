@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Registro</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}" />
+    </head>
+    <body>
+        <h2>Registro de Usuario</h2>
+        <form th:action="@{/usuario/registrar}" th:object="${usuario}" method="post">
+            <label>Nombre:</label>
+            <input type="text" th:field="*{nombre}" required/><br/>
+
+            <label>Correo:</label>
+            <input type="email" th:field="*{correo}" required/><br/>
+
+            <label>Contraseña:</label>
+            <input type="password" th:field="*{contrasena}" required/><br/>
+
+            <label>Rol:</label>
+            <select th:field="*{rol}">
+                <option value="TRABAJADOR">Trabajador</option>
+                <option value="SOLICITANTE">Solicitante</option>
+                <option value="CAPACITADOR">Capacitador</option>
+            </select><br/>
+
+            <label>Ubicación:</label>
+            <input type="text" th:field="*{ubicacion}" required/><br/>
+
+            <label>Experiencia:</label>
+            <textarea th:field="*{experiencia}"></textarea><br/>
+
+            <button type="submit">Registrarse</button>
+        </form>
+
+        <p>¿Ya tienes una cuenta? <a th:href="@{/usuario/login}">Iniciar sesión</a></p>
+
+        <div th:if="${error}">
+            <p style="color:red;" th:text="${error}"></p>
+        </div>
+        <div th:if="${mensaje}">
+            <p style="color:green;" th:text="${mensaje}"></p>
+        </div>
+    </body>
+</html>
+

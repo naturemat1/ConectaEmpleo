@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Crear Capacitación</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+    </head>
+    <body>
+        <header>
+            <div class="logo">Conecta <span style="color:#00e5ff;">Empleo</span></div>
+        </header>
+
+        <div class="container">
+            <h2>📚 Publicar nueva capacitación</h2>
+            <form th:action="@{/capacitaciones/crear}" th:object="${capacitacion}" method="post">
+                <label>Título:</label>
+                <input type="text" th:field="*{titulo}" required>
+
+                <label>Descripción:</label>
+                <textarea th:field="*{descripcion}" required></textarea>
+
+                <label>Categoría:</label>
+                <input type="text" th:field="*{categoria}" required>
+
+                <label>Fecha de Inicio:</label>
+                <input type="date" th:field="*{fecha}" placeholder="Ej: Julio 2025">
+
+                <button class="cta" type="submit">Crear Capacitación</button>
+            </form>
+        </div>
+    </body>
+</html>
