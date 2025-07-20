@@ -6,8 +6,10 @@ package Grupo12.ConectaEmpleo.Repository;
  */
 // repository/TrabajoRepository.java
 import Grupo12.ConectaEmpleo.Model.Trabajo;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TrabajoRepository extends JpaRepository<Trabajo, Long> {
-    // puedes agregar métodos personalizados luego
+    List<Trabajo> findByCategoriaContainingIgnoreCase(String categoria);
+    List<Trabajo> findByUbicacionContainingIgnoreCase(String ubicacion);
 }

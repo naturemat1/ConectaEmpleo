@@ -24,10 +24,19 @@ public class TrabajoService {
     public List<Trabajo> listarTodos() {
         return trabajoRepository.findAll();
     }
-    
+
     public Trabajo obtenerPorId(Long id) {
         return trabajoRepository.findById(id)
-                   .orElseThrow(() -> new RuntimeException("Trabajo no encontrado"));
+                .orElseThrow(() -> new RuntimeException("Trabajo no encontrado"));
+    }
+
+    public List<Trabajo> buscarPorCategoriaOUbicacion(String categoria, String ubicacion) {
+        if (categoria != null && !categoria.isEmpty()) {
+            return trabajoRepository.findByCategoriaContainingIgnoreCase(categoria);
+        } else if (ubicacion != null && !ubicacion.isEmpty()) {
+            return trabajoRepository.findByUbicacionContainingIgnoreCase(ubicacion);
+        } else {
+            return trabajoRepository.findAll();
+        }
     }
 }
-

@@ -6,6 +6,7 @@ package Grupo12.ConectaEmpleo.Controller;
  */
 import Grupo12.ConectaEmpleo.Model.Trabajo;
 import Grupo12.ConectaEmpleo.Service.TrabajoService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +34,17 @@ public class TrabajoController {
     @GetMapping
     public String listarTrabajos(Model model) {
         model.addAttribute("trabajos", trabajoService.listarTodos());
+        return "lista-trabajos";
+    }
+
+    @GetMapping("/personalizado")
+    public String listarTrabajosPersonalizados(Model model,
+            @RequestParam(name = "categoria", required = false) String categoria,
+            @RequestParam(name = "ubicacion", required = false) String ubicacion) {
+
+        List<Trabajo> trabajos = trabajoService.buscarPorCategoriaOUbicacion(categoria, ubicacion);
+        model.addAttribute("trabajos", trabajos);
+
         return "lista-trabajos";
     }
 }

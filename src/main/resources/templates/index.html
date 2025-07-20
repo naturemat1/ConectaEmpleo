@@ -23,11 +23,11 @@
                 <h1>¡Ahora es el momento de cambiar!</h1>
                 <p>Encuentra el empleo que encaja contigo, más de <strong>1.407 ofertas</strong></p>
             </div>
-            <div class="search-bar">
-                <input type="text" placeholder="💼 Cargo o categoría" />
-                <input type="text" placeholder="📍 Lugar" />
-                <button>🔍 Buscar empleos</button>
-            </div>
+            <form th:action="@{/trabajo/personalizado}" method="get" class="search-bar">
+                <input type="text" name="categoria" placeholder="💼 Cargo o categoría" />
+                <input type="text" name="ubicacion" placeholder="📍 Lugar" />
+                <button type="submit">🔍 Buscar empleos</button>
+            </form>
         </section>
 
         <div class="container">
