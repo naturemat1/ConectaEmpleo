@@ -1,8 +1,8 @@
 package Grupo12.ConectaEmpleo.Model;
 
 /**
- *
- * @author Home
+ * Entidad que representa la inscripción de un usuario a una capacitación.
+ * Tiene una clave compuesta (usuarioId + capacitacionId)
  */
 import jakarta.persistence.Embeddable;
 import java.io.Serializable;
@@ -13,6 +13,23 @@ public class ParticipanteCapacitacionId implements Serializable {
 
     private Long usuarioId;
     private Long capacitacionId;
+
+    //Getters y Setters
+    public Long getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(Long usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+
+    public Long getCapacitacionId() {
+        return capacitacionId;
+    }
+
+    public void setCapacitacionId(Long capacitacionId) {
+        this.capacitacionId = capacitacionId;
+    }
 
     // equals y hashCode obligatorios
     @Override
@@ -40,24 +57,4 @@ public class ParticipanteCapacitacionId implements Serializable {
         }
         return Objects.equals(this.capacitacionId, other.capacitacionId);
     }
-    
-    
-    //Getters y Setters
-    public Long getUsuarioId() {
-        return usuarioId;
-    }
-
-    public void setUsuarioId(Long usuarioId) {
-        this.usuarioId = usuarioId;
-    }
-
-    public Long getCapacitacionId() {
-        return capacitacionId;
-    }
-
-    public void setCapacitacionId(Long capacitacionId) {
-        this.capacitacionId = capacitacionId;
-    }
-    
 }
-

@@ -12,8 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- *
- * @author Home
+ * Servicio que maneja la lógica del negocio relacionada con las postulaciones:
+ * - Postularse a un trabajo
+ * - Aceptar o rechazar una postulación
+ * - Validar existencia de postulaciones
  */
 @Service
 public class PostulacionService {
@@ -24,6 +26,12 @@ public class PostulacionService {
     @Autowired
     private TrabajoRepository trabajoRepo;
 
+    /**
+     * Permite a un usuario postularse a un trabajo.
+     *
+     * @param trabajador Usuario que postula
+     * @param trabajo Trabajo al que se postula
+     */
     public void postularse(Usuario trabajador, Trabajo trabajo) {
         if (postulacionRepo.existsByTrabajadorAndTrabajo(trabajador, trabajo)) {
             return;
@@ -36,6 +44,12 @@ public class PostulacionService {
         postulacionRepo.save(postulacion);
     }
 
+    /**
+     * Obtiene todas las postulaciones de un usuario.
+     *
+     * @param trabajador Usuario al que se le buscan las postulaciones
+     * @return Lista de postulaciones del usuario
+     */
     public List<Postulacion> findByTrabajador(Usuario trabajador) {
         List<Postulacion> postulaciones = postulacionRepo.findByTrabajador(trabajador);
 
@@ -46,7 +60,12 @@ public class PostulacionService {
         return postulaciones;
     }
 
-    // Método para aceptar una postulación
+    /**
+     * Acepta una postulación y cambia su estado a "ACEPTADO".
+     *
+     * @param id ID de la postulación
+     * @return La postulación aceptada
+     */
     public Postulacion aceptarPostulacion(Long id) {
         Postulacion postulacion = postulacionRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Postulación no encontrada"));
@@ -55,12 +74,9 @@ public class PostulacionService {
             throw new RuntimeException("La postulación ya fue procesada");
         }
 
-        // Cambiar estado de la postulación
         postulacion.setEstado(EstadoPostulacion.ACEPTADO);
 
-        // Obtener el trabajo asociado a la postulación
         Trabajo trabajo = postulacion.getTrabajo();
-
         if (trabajo != null) {
             trabajo.setEstado(EstadoTrabajo.ACTIVO);
             trabajoRepo.save(trabajo);

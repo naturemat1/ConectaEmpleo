@@ -1,12 +1,12 @@
 package Grupo12.ConectaEmpleo.Model;
 
-/**
- *
- * @author Home
- */
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
+/**
+ * Entidad que representa una postulación realizada por un trabajador a un
+ * trabajo.
+ */
 @Entity
 @Table(name = "postulacion")
 public class Postulacion {
@@ -14,9 +14,7 @@ public class Postulacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private LocalDate fechaPostulacion;
-
     @Enumerated(EnumType.STRING)
     private EstadoPostulacion estado;
 
@@ -31,7 +29,7 @@ public class Postulacion {
     @OneToOne(mappedBy = "postulacion", cascade = CascadeType.ALL)
     private Contrato contrato;
 
-    //Getters y Setters
+    // Getters y Setters
     public Long getId() {
         return id;
     }
@@ -79,5 +77,4 @@ public class Postulacion {
     public void setContrato(Contrato contrato) {
         this.contrato = contrato;
     }
-    
 }

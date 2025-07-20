@@ -1,9 +1,5 @@
 package Grupo12.ConectaEmpleo.Model;
 
-/**
- *
- * @author Home
- */
 import jakarta.persistence.*;
 
 @Entity
@@ -22,7 +18,7 @@ public class Contrato {
     @JoinColumn(name = "postulacion_id")
     private Postulacion postulacion;
 
-    //Getters y Setters
+    // Getters y Setters
     public Long getId() {
         return id;
     }
@@ -62,6 +58,4 @@ public class Contrato {
     public void setPostulacion(Postulacion postulacion) {
         this.postulacion = postulacion;
     }
-    
 }
-

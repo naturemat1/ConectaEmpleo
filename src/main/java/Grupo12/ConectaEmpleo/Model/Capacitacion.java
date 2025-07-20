@@ -1,13 +1,13 @@
 package Grupo12.ConectaEmpleo.Model;
 
-/**
- *
- * @author Home
- */
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Entidad que representa una capacitación en el sistema. Contiene información
+ * sobre el título, descripción, categoría, fecha y relación con el capacitador.
+ */
 @Entity
 @Table(name = "capacitacion")
 public class Capacitacion {
@@ -15,6 +15,7 @@ public class Capacitacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String titulo;
     private String descripcion;
     private String categoria;
@@ -27,7 +28,7 @@ public class Capacitacion {
     @OneToMany(mappedBy = "capacitacion", cascade = CascadeType.ALL)
     private List<ParticipanteCapacitacion> participantes;
 
-    //Getters y Setters
+    // Getters y Setters
     public Long getId() {
         return id;
     }
@@ -83,6 +84,4 @@ public class Capacitacion {
     public void setParticipantes(List<ParticipanteCapacitacion> participantes) {
         this.participantes = participantes;
     }
-    
 }
-

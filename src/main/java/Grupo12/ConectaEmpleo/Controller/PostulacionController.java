@@ -1,7 +1,7 @@
 package Grupo12.ConectaEmpleo.Controller;
 
-import Grupo12.ConectaEmpleo.Model.Trabajo;
 import Grupo12.ConectaEmpleo.Model.Usuario;
+import Grupo12.ConectaEmpleo.Model.Trabajo;
 import Grupo12.ConectaEmpleo.Service.PostulacionService;
 import Grupo12.ConectaEmpleo.Service.TrabajoService;
 import jakarta.servlet.http.HttpSession;
@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 /**
- *
- * @author Home
+ * Controlador que maneja las acciones relacionadas con las postulaciones.
  */
 @Controller
 public class PostulacionController {
@@ -23,6 +22,13 @@ public class PostulacionController {
     @Autowired
     private TrabajoService trabajoService;
 
+    /**
+     * Procesa la postulación de un usuario a un trabajo.
+     *
+     * @param id ID del trabajo
+     * @param session Sesión HTTP
+     * @return Redirige al listado de trabajos
+     */
     @PostMapping("/empleos/{id}/postular")
     public String postular(@PathVariable Long id, HttpSession session) {
         System.out.println("ENTRAMOS AL CONTROLADOR DE POSTULACIÓN");

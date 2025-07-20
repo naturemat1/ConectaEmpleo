@@ -1,13 +1,13 @@
 package Grupo12.ConectaEmpleo.Model;
 
-/**
- *
- * @author Home
- */
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * Entidad que representa a un usuario en el sistema.
+ * Contiene los datos del usuario y sus relaciones con otras entidades.
+ */
 @Entity
 @Table(name = "usuario")
 public class Usuario {
@@ -15,6 +15,7 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nombre;
     @Column(unique = true)
     private String correo;
@@ -22,6 +23,7 @@ public class Usuario {
     private String ubicacion;
     private String experiencia;
     private BigDecimal calificacionPromedio;
+
     @Enumerated(EnumType.STRING)
     private RolUsuario rol;
 
@@ -123,6 +125,4 @@ public class Usuario {
     public void setNotificaciones(List<Notificacion> notificaciones) {
         this.notificaciones = notificaciones;
     }
-    
 }
-

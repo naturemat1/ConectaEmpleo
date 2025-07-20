@@ -1,13 +1,13 @@
 package Grupo12.ConectaEmpleo.Model;
 
-/**
- *
- * @author Home
- */
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Entidad que representa un trabajo en el sistema. Contiene información sobre
+ * el trabajo, su estado, ubicación, categoría, y relaciones con otros objetos.
+ */
 @Entity
 @Table(name = "trabajo")
 public class Trabajo {
@@ -32,7 +32,7 @@ public class Trabajo {
     @OneToMany(mappedBy = "trabajo", cascade = CascadeType.ALL)
     private List<Postulacion> postulaciones;
 
-    //Getters y Setters
+    // Getters y Setters
     public Long getId() {
         return id;
     }
@@ -104,6 +104,4 @@ public class Trabajo {
     public void setPostulaciones(List<Postulacion> postulaciones) {
         this.postulaciones = postulaciones;
     }
-    
 }
-

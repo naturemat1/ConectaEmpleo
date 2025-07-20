@@ -1,17 +1,31 @@
 package Grupo12.ConectaEmpleo.Service;
 
-import Grupo12.ConectaEmpleo.Model.*;
+import Grupo12.ConectaEmpleo.Model.ParticipanteCapacitacion;
+import Grupo12.ConectaEmpleo.Model.ParticipanteCapacitacionId;
+import Grupo12.ConectaEmpleo.Model.Usuario;
+import Grupo12.ConectaEmpleo.Model.Capacitacion;
 import Grupo12.ConectaEmpleo.Repository.ParticipanteCapacitacionRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Servicio que maneja la lógica del negocio relacionada con las inscripciones a capacitaciones:
+ * - Inscribir usuario a una capacitación
+ * - Listar inscripciones de un usuario
+ */
 @Service
 public class ParticipanteCapacitacionService {
 
     @Autowired
     private ParticipanteCapacitacionRepository repository;
 
+    /**
+     * Inscripción de un usuario a una capacitación.
+     *
+     * @param usuario Usuario que se inscribe
+     * @param capacitacion Capacitación a la que se inscribe
+     */
     public void inscribirUsuarioEnCapacitacion(Usuario usuario, Capacitacion capacitacion) {
         ParticipanteCapacitacionId id = new ParticipanteCapacitacionId();
         id.setUsuarioId(usuario.getId());
@@ -31,11 +45,17 @@ public class ParticipanteCapacitacionService {
         repository.save(pc);
     }
 
-    public List<ParticipanteCapacitacion> findByTrabajador(Usuario trabajador) {
-        List<ParticipanteCapacitacion> inscripciones = repository.findByUsuario(trabajador);
+    /**
+     * Obtiene todas las inscripciones de un usuario.
+     *
+     * @param usuario Usuario a buscar
+     * @return Lista de inscripciones
+     */
+    public List<ParticipanteCapacitacion> findByTrabajador(Usuario usuario) {
+        List<ParticipanteCapacitacion> inscripciones = repository.findByUsuario(usuario);
 
         if (inscripciones.isEmpty()) {
-            throw new RuntimeException("No hay inscripciones para el usuario: " + trabajador.getNombre());
+            throw new RuntimeException("No hay inscripciones para el usuario: " + usuario.getNombre());
         }
 
         return inscripciones;

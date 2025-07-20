@@ -1,11 +1,11 @@
 package Grupo12.ConectaEmpleo.Model;
 
-/**
- *
- * @author Home
- */
 import jakarta.persistence.*;
 
+/**
+ * Entidad que representa la inscripción de un usuario a una capacitación.
+ * Tiene una clave compuesta (usuarioId + capacitacionId)
+ */
 @Entity
 @Table(name = "participante_capacitacion")
 public class ParticipanteCapacitacion {
@@ -18,13 +18,15 @@ public class ParticipanteCapacitacion {
 
     @ManyToOne
     @MapsId("usuarioId")
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
     @ManyToOne
     @MapsId("capacitacionId")
+    @JoinColumn(name = "capacitacion_id")
     private Capacitacion capacitacion;
 
-    //Getters y Setters
+    // Getters y Setters
     public ParticipanteCapacitacionId getId() {
         return id;
     }
@@ -64,6 +66,4 @@ public class ParticipanteCapacitacion {
     public void setCapacitacion(Capacitacion capacitacion) {
         this.capacitacion = capacitacion;
     }
-    
 }
-
