@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Grupo12.ConectaEmpleo.Controller;
 
 import Grupo12.ConectaEmpleo.Model.Trabajo;
@@ -29,15 +25,20 @@ public class PostulacionController {
 
     @PostMapping("/empleos/{id}/postular")
     public String postular(@PathVariable Long id, HttpSession session) {
-        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        System.out.println("ENTRAMOS AL CONTROLADOR DE POSTULACIÓN");
+
+        Usuario usuario = (Usuario) session.getAttribute("usuarioLogueado");
         if (usuario == null) {
+            System.out.println("USUARIO NO AUTENTICADO");
             return "redirect:/usuario/login";
         }
+
+        System.out.println("USUARIO LOGUEADO: " + usuario.getNombre());
+        System.out.println("ID DEL TRABAJO: " + id);
 
         Trabajo trabajo = trabajoService.obtenerPorId(id);
         postulacionService.postularse(usuario, trabajo);
 
-        return "redirect:/empleos";
+        return "redirect:/trabajo";
     }
 }
-

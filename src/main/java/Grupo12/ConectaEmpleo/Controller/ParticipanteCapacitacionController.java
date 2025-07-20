@@ -19,7 +19,7 @@ public class ParticipanteCapacitacionController {
 
     @PostMapping("/capacitaciones/{id}/inscribirse")
     public String inscribirse(@PathVariable Long id, HttpSession session) {
-        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        Usuario usuario = (Usuario) session.getAttribute("usuarioLogueado");
         if (usuario == null) {
             return "redirect:/usuario/login";
         }
