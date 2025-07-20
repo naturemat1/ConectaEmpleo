@@ -54,5 +54,9 @@ public class TrabajoService {
         }
         return categoriasConteo;
     }
-    
+
+    public void eliminar(Trabajo trabajo) {
+        trabajoRepository.delete(trabajo);
+    }
+
 }

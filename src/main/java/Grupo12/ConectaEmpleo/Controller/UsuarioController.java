@@ -70,7 +70,7 @@ public class UsuarioController {
         }
     }
     
-     @GetMapping("/perfil")
+    @GetMapping("/perfil")
     public String mostrarPerfil(HttpSession session, Model model) {
         Usuario usuario = (Usuario) session.getAttribute("usuarioLogueado");
         if (usuario == null) {
@@ -83,7 +83,7 @@ public class UsuarioController {
         model.addAttribute("postulaciones", postulaciones);
         model.addAttribute("inscripciones", inscripciones);
 
-        return "perfil"; // Nombre del template Thymeleaf
+        return "perfil"; 
     }
 
 }

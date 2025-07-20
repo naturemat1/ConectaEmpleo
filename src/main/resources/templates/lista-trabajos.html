@@ -54,7 +54,7 @@
                 <a th:href="@{/}">Inicio</a>
                 <a th:href="@{/trabajo}">Empleos</a>
                 <a th:href="@{/capacitaciones}">Capacitaciones</a>
-                <a th:href="@{/usuario/registro}">Mi Perfil</a>
+                <a th:href="@{/usuario/perfil}">Mi Perfil</a>
             </nav>
         </header>
 
@@ -68,6 +68,9 @@
                     <p><strong>Ubicación:</strong> <span th:text="${trabajo.ubicacion}">Ubicación</span></p>
                     <form th:action="@{/empleos/{id}/postular(id=${trabajo.id})}" method="post">
                         <button class="cta">Postular</button>
+                    </form>
+                    <form  th:action="@{/trabajo/{id}/finalizar(id=${trabajo.id})}" method="post">
+                        <button type="submit" class="cta">Finalizar Trabajo</button>
                     </form>
 
                 </div>

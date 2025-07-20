@@ -5,11 +5,24 @@
         <link rel="stylesheet" th:href="@{/css/style.css}" />
     </head>
     <body>
+        <header>
+            <div class="logo">Conecta <span style="color:#00e5ff;">Empleo</span></div>
+            <nav>
+                <a th:href="@{/}">Inicio</a>
+                <a th:href="@{/trabajo}">Empleos</a>
+                <a th:href="@{/capacitaciones}">Capacitaciones</a>
+                <a th:href="@{/usuario/perfil}">Mi Perfil</a>
+            </nav>
+        </header>
+        
         <div class="container">
             <h1>Mi Perfil</h1>
 
             <!-- Mostrar nombre del usuario -->
             <p><strong>Bienvenido:</strong> <span th:text="${session.usuarioLogueado.nombre}"></span></p>
+            
+            <!-- Mostrar calificacion promedio del usuario -->
+            <h3>Calificación promedio: <span th:text="${session.usuarioLogueado.calificacionPromedio} ?: 'Sin calificar'"></span>/5</h3>
 
             <!-- Sección de postulaciones -->
             <h2>Mis Postulaciones</h2>
@@ -28,6 +41,11 @@
                         <td th:text="${p.trabajo.titulo}"></td>
                         <td th:text="${p.fechaPostulacion}"></td>
                         <td th:text="${p.estado}"></td>
+                        <td>
+                            <form th:action="@{/trabajo/{id}/aceptar(id=${p.id})}" method="post">
+                                <button type="submit" class="cta">Aceptar</button>
+                            </form>
+                        </td>
                     </tr>
                 </tbody>
             </table>

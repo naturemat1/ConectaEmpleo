@@ -23,7 +23,6 @@ public class Contrato {
     private Postulacion postulacion;
 
     //Getters y Setters
-
     public Long getId() {
         return id;
     }

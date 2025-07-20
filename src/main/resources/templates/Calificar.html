@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Calificar Trabajo</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}" />
+    </head>
+    <body>
+        <h2>Califica al trabajador</h2>
+
+        <form th:action="@{/trabajo/calificar}" method="post">
+            <input type="hidden" name="trabajoId" th:value="${trabajoId}" />
+            <label for="puntuacion">Tu calificación (1-5):</label>
+            <input type="number" name="puntuacion" min="1" max="5" required>
+
+            <label for="comentario">Comentario (opcional):</label>
+            <textarea name="comentario"></textarea>
+
+            <button type="submit" class="cta">Enviar calificación</button>
+        </form>
+
+        <br/>
+        <a th:href="@{/usuario/perfil}" class="btn btn-secondary">Volver a perfil</a>
+    </body>
+</html>

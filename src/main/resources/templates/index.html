@@ -13,7 +13,7 @@
                 <a th:href="@{/}">Inicio</a>
                 <a th:href="@{/trabajo}">Empleos</a>
                 <a th:href="@{/capacitaciones}">Capacitaciones</a>
-                <a a th:href="@{/usuario/perfil}" class="btn btn-primar" >Mi Perfil</a>
+                <a a th:href="@{/usuario/perfil}" class="btn btn-primary" >Mi Perfil</a>
                 <a th:href="@{/usuario/registro}">Registrarse</a>
             </nav>
         </header>
@@ -21,7 +21,7 @@
         <section class="hero">
             <div class="hero-content">
                 <h1>¡Ahora es el momento de cambiar!</h1>
-                <p>Encuentra el empleo que encaja contigo, más de <strong>1.407 ofertas</strong></p>
+                <p>Encuentra una nueva forma de ganar dinero, más de <strong>1.407 ofertas</strong></p>
             </div>
             <form th:action="@{/trabajo/personalizado}" method="get" class="search-bar">
                 <input type="text" name="categoria" placeholder="💼 Cargo o categoría" />
