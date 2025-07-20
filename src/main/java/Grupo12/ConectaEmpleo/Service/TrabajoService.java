@@ -6,10 +6,12 @@ package Grupo12.ConectaEmpleo.Service;
  */
 import Grupo12.ConectaEmpleo.Model.Trabajo;
 import Grupo12.ConectaEmpleo.Repository.TrabajoRepository;
+import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class TrabajoService {
@@ -39,4 +41,18 @@ public class TrabajoService {
             return trabajoRepository.findAll();
         }
     }
+
+    public Map<String, Long> obtenerCategoriasConMasOfertas() {
+        List<Trabajo> trabajos = trabajoRepository.findAll();
+        Map<String, Long> categoriasConteo = new HashMap<>();
+
+        for (Trabajo t : trabajos) {
+            String categoria = t.getCategoria();
+            if (categoria != null && !categoria.trim().isEmpty()) {
+                categoriasConteo.put(categoria, categoriasConteo.getOrDefault(categoria, 0L) + 1);
+            }
+        }
+        return categoriasConteo;
+    }
+    
 }

@@ -45,7 +45,7 @@
 
             <div class="highlight">
                 <h2>🔔 Alta demanda en tu zona</h2>
-                <p>La categoría <strong>Jardinería</strong> está en alta demanda. ¡Capacítate ahora!</p>
+                <p>La categoría <strong th:text="${categoriaMasDemandada ?: 'Jardinería'}"></strong> está en alta demanda. ¡Capacítate ahora!</p>
                 <a class="cta" th:href="@{/capacitaciones}">Comenzar capacitación</a>
             </div>
         </div>

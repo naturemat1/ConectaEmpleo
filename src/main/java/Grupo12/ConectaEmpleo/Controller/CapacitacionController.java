@@ -6,6 +6,7 @@ package Grupo12.ConectaEmpleo.Controller;
  */
 import Grupo12.ConectaEmpleo.Model.Capacitacion;
 import Grupo12.ConectaEmpleo.Service.CapacitacionService;
+import Grupo12.ConectaEmpleo.Service.TrabajoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,8 @@ public class CapacitacionController {
 
     @Autowired
     private CapacitacionService capacitacionService;
+    @Autowired
+    private TrabajoService trabajoService;
 
     @GetMapping
     public String mostrarCapacitaciones(Model model) {
@@ -38,4 +41,5 @@ public class CapacitacionController {
         capacitacionService.guardar(capacitacion); // Aquí también puedes vincular con el capacitador
         return "redirect:/capacitaciones";
     }
+    
 }

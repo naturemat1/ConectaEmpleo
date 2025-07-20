@@ -19,22 +19,20 @@
         <div class="container">
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <h2 style="color: #1a237e;">📚 Capacitaciones Disponibles</h2>
-                <!-- Botón para crear nueva capacitación -->
                 <a th:href="@{/capacitaciones/nueva}" class="cta" style="text-decoration: none;">➕ Crear Capacitación</a>
             </div>
 
-            <div class="card-container" style="margin-top: 20px;">
+            <div class="card-container">
                 <div class="card" th:each="cap : ${capacitaciones}">
                     <h3 th:text="${cap.titulo}">Título</h3>
                     <p><strong>Categoría:</strong> <span th:text="${cap.categoria}">Categoría</span></p>
                     <p><strong>Fechas:</strong> 
-                        <span th:text="${cap.fecha}">Inicio</span> - 
+                        <span th:text="${cap.fecha}">Fecha</span>
                     </p>
                     <p th:text="${cap.descripcion}">Descripción</p>
                     <form th:action="@{/capacitaciones/{id}/inscribirse(id=${cap.id})}" method="post">
                         <button class="cta">Inscribirse</button>
                     </form>
-
                 </div>
             </div>
         </div>

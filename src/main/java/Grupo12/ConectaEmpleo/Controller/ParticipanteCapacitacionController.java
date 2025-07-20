@@ -16,6 +16,7 @@ public class ParticipanteCapacitacionController {
     private ParticipanteCapacitacionService participanteService;
     @Autowired
     private CapacitacionService capacitacionService;
+    
 
     @PostMapping("/capacitaciones/{id}/inscribirse")
     public String inscribirse(@PathVariable Long id, HttpSession session) {
@@ -29,4 +30,6 @@ public class ParticipanteCapacitacionController {
 
         return "redirect:/capacitaciones";
     }
+
+    
 }
