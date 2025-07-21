@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Reportes de Impacto</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+    </head>
+    <body>
+        <header>
+            <div class="logo">Conecta <span style="color:#00e5ff;">Empleo</span></div>
+            <nav>
+                <a th:href="@{/}">Inicio</a>
+                <a th:href="@{/empleos}">Empleos</a>
+                <a th:href="@{/capacitaciones}">Capacitaciones</a>
+                <a th:href="@{/usuario/perfil}">Mi Perfil</a>
+            </nav>
+        </header>
+
+        <div class="container">
+            <h2>📊 Reportes de Impacto</h2>
+            <ul>
+                <li>Total de usuarios registrados: <strong th:text="${usuariosCount}">0</strong></li>
+                <li>Empleos publicados: <strong th:text="${trabajosCount}">0</strong></li>
+                <li>Postulaciones realizadas: <strong th:text="${postulacionesCount}">0</strong></li>
+                <li>Capacitaciones disponibles: <strong th:text="${capacitacionesCount}">0</strong></li>
+                <li>Inscripciones a capacitaciones: <strong th:text="${inscripcionesCount}">0</strong></li>
+            </ul>
+        </div>
+    </body>
+</html>
