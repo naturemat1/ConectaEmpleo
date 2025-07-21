@@ -40,6 +40,14 @@ public class ReporteController {
         model.addAttribute("capacitacionesCount", capacitaciones);
         model.addAttribute("inscripcionesCount", inscripciones);
 
+        long max = Math.max(
+                Math.max(Math.max(usuarios, trabajos), postulaciones),
+                Math.max(capacitaciones, inscripciones)
+        );
+
+        model.addAttribute("maxValor", max);
+
         return "reportes";
     }
+
 }

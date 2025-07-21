@@ -4,6 +4,83 @@
         <meta charset="UTF-8">
         <title>Reportes de Impacto</title>
         <link rel="stylesheet" th:href="@{/css/style.css}">
+
+        <!-- Estilos para gráficas simuladas -->
+        <style>
+            /* Estilos para el gráfico simulado */
+            .grafica-simulada {
+                margin-top: 30px;
+                padding: 20px;
+                background-color: #f7f9fc;
+                border-radius: 8px;
+            }
+
+            .grafica-simulada h3 {
+                margin-bottom: 15px;
+                color: #333;
+                text-align: center;
+            }
+
+            .barra {
+                display: flex;
+                align-items: center;
+                margin-bottom: 12px;
+                font-size: 14px;
+                color: #333;
+            }
+
+            .barra span {
+                width: 120px;
+                font-weight: bold;
+            }
+
+            .valor {
+                height: 24px;
+                background-color: #00e5ff; /* Color base */
+                border-radius: 4px;
+                padding: 0 8px;
+                color: white;
+                font-weight: bold;
+                text-align: center;
+                min-width: 20px;
+                transition: width 0.5s ease-in-out;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+            }
+
+            /* Colores diferenciados para cada barra */
+            .barra:nth-child(1) .valor {
+                background-color: #00e5ff;
+            }
+            .barra:nth-child(2) .valor {
+                background-color: #ff6b6b;
+            }
+            .barra:nth-child(3) .valor {
+                background-color: #ffbe76;
+            }
+            .barra:nth-child(4) .valor {
+                background-color: #7ee8fa;
+            }
+            .barra:nth-child(5) .valor {
+                background-color: #a2d2cc;
+            }
+
+            /* Título del gráfico */
+            .grafica-simulada h3 {
+                font-size: 18px;
+                color: #333;
+                text-align: center;
+            }
+
+            /* Icono del gráfico */
+            .icono-grafico {
+                display: inline-block;
+                width: 16px;
+                height: 16px;
+                background-color: #00e5ff;
+                margin-right: 5px;
+                border-radius: 2px;
+            }
+        </style>
     </head>
     <body>
         <header>
@@ -25,6 +102,50 @@
                 <li>Capacitaciones disponibles: <strong th:text="${capacitacionesCount}">0</strong></li>
                 <li>Inscripciones a capacitaciones: <strong th:text="${inscripcionesCount}">0</strong></li>
             </ul>
+
+            <div class="grafica-simulada">
+                <h3>📊 Gráfico de impacto</h3>
+
+                <div class="barra">
+                    <span>Usuarios</span>
+                    <div class="valor"
+                         th:style="'width:' + (${usuariosCount} * 100 / ${maxValor}) + '%'">
+                        [[${usuariosCount}]]
+                    </div>
+                </div>
+
+                <div class="barra">
+                    <span>Trabajos</span>
+                    <div class="valor"
+                         th:style="'width:' + (${trabajosCount} * 100 / ${maxValor}) + '%'">
+                        [[${trabajosCount}]]
+                    </div>
+                </div>
+
+                <div class="barra">
+                    <span>Postulaciones</span>
+                    <div class="valor"
+                         th:style="'width:' + (${postulacionesCount} * 100 / ${maxValor}) + '%'">
+                        [[${postulacionesCount}]]
+                    </div>
+                </div>
+
+                <div class="barra">
+                    <span>Capacitaciones</span>
+                    <div class="valor"
+                         th:style="'width:' + (${capacitacionesCount} * 100 / ${maxValor}) + '%'">
+                        [[${capacitacionesCount}]]
+                    </div>
+                </div>
+
+                <div class="barra">
+                    <span>Inscripciones</span>
+                    <div class="valor"
+                         th:style="'width:' + (${inscripcionesCount} * 100 / ${maxValor}) + '%'">
+                        [[${inscripcionesCount}]]
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>
