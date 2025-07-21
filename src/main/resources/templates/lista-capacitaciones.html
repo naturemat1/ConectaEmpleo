@@ -4,6 +4,48 @@
         <meta charset="UTF-8">
         <title>Capacitaciones</title>
         <link rel="stylesheet" th:href="@{/css/style.css}">
+        <style>
+            .card-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 2rem;
+                padding: 2rem;
+                justify-content: center;
+            }
+
+            .card {
+                background: white;
+                border-radius: 10px;
+                padding: 1rem;
+                width: 280px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                border-left: 5px solid #00bfa6;
+            }
+
+            .card h3 {
+                margin-top: 0;
+                color: #1a237e;
+            }
+
+            .card p {
+                color: #555;
+            }
+
+            .card .cta {
+                margin-top: 1rem;
+                background-color: #ff5722;
+                color: white;
+                border: none;
+                padding: 0.6rem 1.2rem;
+                border-radius: 30px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+
+            .card .cta:hover {
+                background-color: #e64a19;
+            }
+        </style>
     </head>
     <body>
         <header>
