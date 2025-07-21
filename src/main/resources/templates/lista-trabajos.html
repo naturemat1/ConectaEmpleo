@@ -106,7 +106,8 @@
             <!-- Contenedor adicional para botón de publicación (solo visible para solicitantes logueados) -->
             <div class="container">
                 <!-- Condición: Muestra el botón solo si el usuario está logueado y es de rol 'SOLICITANTE' -->
-                <div th:if="${session.usuarioLogueado != null and session.usuarioLogueado.rol.name() == 'SOLICITANTE'}">
+                <div th:if="${session.usuarioLogueado != null 
+                     and (session.usuarioLogueado.rol.name() == 'SOLICITANTE' or session.usuarioLogueado.rol.name() == 'ADMIN')}">
                     <!-- Enlace para crear un nuevo trabajo -->
                     <a th:href="@{/trabajo/nuevo}">
                         <button class="cta">Publicar nuevo empleo</button>

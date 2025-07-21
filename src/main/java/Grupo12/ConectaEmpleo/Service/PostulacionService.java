@@ -53,9 +53,9 @@ public class PostulacionService {
     public List<Postulacion> findByTrabajador(Usuario trabajador) {
         List<Postulacion> postulaciones = postulacionRepo.findByTrabajador(trabajador);
 
-        if (postulaciones.isEmpty()) {
+        /*if (postulaciones.isEmpty()) {
             throw new RuntimeException("No hay postulaciones para el usuario: " + trabajador.getNombre());
-        }
+        }*/
 
         return postulaciones;
     }
