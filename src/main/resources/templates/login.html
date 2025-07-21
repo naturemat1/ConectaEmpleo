@@ -1,24 +1,38 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Iniciar Sesión</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}" />
-</head>
-<body>
-    <div class="container">
-        <h2>Iniciar Sesión</h2>
-        <form th:action="@{/usuario/login}" method="post">
-            <label for="correo">Correo:</label>
-            <input type="email" name="correo" required /><br/>
+    <!--
+        Vista: login.html
+        Descripción: Página de inicio de sesión para usuarios registrados.
+        Atributos recibidos (Model):
+        - ${error}: Mensaje opcional de error mostrado cuando las credenciales son inválidas.
+    -->
+    <head>
+        <meta charset="UTF-8">
+        <title>Iniciar Sesión</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}" />
+    </head>
+    <body>
+        <!-- Contenedor principal del formulario -->
+        <div class="container">
+            <!-- Título visual de la página -->
+            <h2>Iniciar Sesión</h2>
 
-            <label for="contrasena">Contraseña:</label>
-            <input type="password" name="contrasena" required /><br/>
+            <!-- Formulario POST para autenticar al usuario -->
+            <form th:action="@{/usuario/login}" method="post">
+                <!-- Campo: Correo electrónico (obligatorio, validado como email) -->
+                <label for="correo">Correo:</label>
+                <input type="email" name="correo" required /><br/>
 
-            <button type="submit" class="cta">Ingresar</button>
-        </form>
+                <!-- Campo: Contraseña (oculta visualmente, obligatoria) -->
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" name="contrasena" required /><br/>
 
-        <p th:if="${error}" th:text="${error}" style="color:red;"></p>
-    </div>
-</body>
+                <!-- Botón de envío con estilo destacado (CTA) -->
+                <button type="submit" class="cta">Ingresar</button>
+            </form>
+
+            <!-- Mensaje de error (visible solo si hay fallo en autenticación) -->
+            <p th:if="${error}" th:text="${error}" style="color:red;"></p>
+        </div>
+    </body>
 </html>

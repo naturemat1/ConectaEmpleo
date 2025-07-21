@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <!--
+        Vista: listaTrabajos.html
+        Descripción: Página que muestra todas las ofertas de trabajo disponibles.
+        Atributos recibidos (Model):
+        - ${trabajos}: Lista de objetos Trabajo mostrados en tarjetas.
+        - session.usuarioLogueado: Usuario actual en sesión (para control de acceso).
+    -->
     <head>
         <meta charset="UTF-8">
         <title>Lista de Trabajos</title>
         <link rel="stylesheet" th:href="@{/css/style.css}" />
+        <!-- Estilos específicos para esta página: diseño de tarjetas de trabajos -->
         <style>
+            /* Contenedor flexible para organizar las tarjetas */
             .card-container {
                 display: flex;
                 flex-wrap: wrap;
@@ -13,24 +22,28 @@
                 justify-content: center;
             }
 
+            /* Tarjeta individual de trabajo */
             .card {
                 background: white;
                 border-radius: 10px;
                 padding: 1rem;
                 width: 280px;
                 box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-                border-left: 5px solid #00bfa6;
+                border-left: 5px solid #00bfa6; /* Línea decorativa izquierda */
             }
 
+            /* Título dentro de la tarjeta */
             .card h3 {
                 margin-top: 0;
                 color: #1a237e;
             }
 
+            /* Texto descriptivo en la tarjeta */
             .card p {
                 color: #555;
             }
 
+            /* Botón de acción dentro de la tarjeta */
             .card .cta {
                 margin-top: 1rem;
                 background-color: #ff5722;
@@ -42,12 +55,14 @@
                 cursor: pointer;
             }
 
+            /* Efecto hover del botón: cambio de color al pasar el mouse */
             .card .cta:hover {
                 background-color: #e64a19;
             }
         </style>
     </head>
     <body>
+        <!-- Encabezado con logo y navegación principal -->
         <header>
             <div class="logo">Conecta <span style="color:#00e5ff;">Empleo</span></div>
             <nav>
@@ -58,33 +73,46 @@
             </nav>
         </header>
 
+        <!-- Contenedor principal -->
         <div class="container">
+            <!-- Título principal de la página -->
             <h2 style="color: #1a237e;">💼 Ofertas Disponibles</h2>
+
+            <!-- Contenedor de tarjetas de trabajos -->
             <div class="card-container">
+                <!-- Itera sobre la lista de trabajos recibida desde el modelo -->
                 <div class="card" th:each="trabajo : ${trabajos}">
+                    <!-- Título del trabajo -->
                     <h3 th:text="${trabajo.titulo}">Título</h3>
+                    <!-- Descripción detallada del trabajo -->
                     <p th:text="${trabajo.descripcion}">Descripción</p>
+                    <!-- Categoría del trabajo -->
                     <p><strong>Categoría:</strong> <span th:text="${trabajo.categoria}">Categoría</span></p>
+                    <!-- Ubicación donde se realizará el trabajo -->
                     <p><strong>Ubicación:</strong> <span th:text="${trabajo.ubicacion}">Ubicación</span></p>
+
+                    <!-- Formulario para postularse a un empleo -->
                     <form th:action="@{/empleos/{id}/postular(id=${trabajo.id})}" method="post">
                         <button class="cta">Postular</button>
                     </form>
-                    <form  th:action="@{/trabajo/{id}/finalizar(id=${trabajo.id})}" method="post">
+
+                    <!-- Formulario para finalizar un trabajo (visible solo para empleadores o sistema) -->
+                    <form th:action="@{/trabajo/{id}/finalizar(id=${trabajo.id})}" method="post">
                         <button type="submit" class="cta">Finalizar Trabajo</button>
                     </form>
-
                 </div>
             </div>
-            <div class="container">
 
+            <!-- Contenedor adicional para botón de publicación (solo visible para solicitantes logueados) -->
+            <div class="container">
+                <!-- Condición: Muestra el botón solo si el usuario está logueado y es de rol 'SOLICITANTE' -->
                 <div th:if="${session.usuarioLogueado != null and session.usuarioLogueado.rol.name() == 'SOLICITANTE'}">
+                    <!-- Enlace para crear un nuevo trabajo -->
                     <a th:href="@{/trabajo/nuevo}">
                         <button class="cta">Publicar nuevo empleo</button>
                     </a>
                 </div>
-
             </div>
-
         </div>
     </body>
 </html>

@@ -1,7 +1,23 @@
+/* ========================================
+   Estilo Global: Transiciones suaves
+   ----------------------------------------
+   Aplica una transición suave a todos los elementos para mejorar la experiencia visual.
+   Duración: 0.3s | Easing: ease
+======================================== */
 * {
     transition: all 0.3s ease;
 }
 
+
+/* ========================================
+   Estilos del Cuerpo (Body)
+   ----------------------------------------
+   Configuración base de la página:
+   - Fuente moderna y legible
+   - Sin márgenes ni relleno por defecto
+   - Fondo claro (#f9f9ff) para un look limpio
+   - Color de texto general oscuro (#333)
+======================================== */
 body {
     font-family: 'Segoe UI', sans-serif;
     margin: 0;
@@ -10,6 +26,16 @@ body {
     color: #333;
 }
 
+
+/* ========================================
+   Encabezado (Header)
+   ----------------------------------------
+   Barra superior con logo y navegación:
+   - Fondo azul profundo (#1a237e)
+   - Texto blanco
+   - Distribución flexible con espaciado entre logo y menú
+   - Alineación vertical centrada
+======================================== */
 header {
     background-color: #1a237e;
     color: white;
@@ -19,12 +45,32 @@ header {
     align-items: center;
 }
 
+
+/* ========================================
+   Logo
+   ----------------------------------------
+   Estilo destacado para el nombre de la marca:
+   - Tamaño grande (1.7rem)
+   - Negrita
+   - Color blanco (refuerza contraste con fondo)
+======================================== */
 .logo {
     font-weight: bold;
     font-size: 1.7rem;
     color: #fff;
 }
 
+
+/* ========================================
+   Navegación (nav a)
+   ----------------------------------------
+   Enlaces de menú:
+   - Color amarillo claro (#ffeb3b) para destacar
+   - Espaciado horizontal coherente
+   - Sin subrayado
+   - Negrita para mejor legibilidad
+   - Transición suave en hover (color y brillo)
+======================================== */
 nav a {
     color: #ffeb3b;
     margin: 0 1rem;
@@ -35,10 +81,19 @@ nav a {
 
 nav a:hover {
     color: #fff;
-    text-shadow: 0 0 8px rgba(255, 235, 59, 0.5);
+    text-shadow: 0 0 8px rgba(255, 235, 59, 0.5); /* Efecto de brillo sutil */
 }
 
-/* ---------------- HERO SECTION ---------------- */
+
+/* ========================================
+   Sección Hero (Imagen de fondo)
+   ----------------------------------------
+   Sección principal con imagen de fondo:
+   - Imagen de alta calidad centrada y cubriendo todo el área
+   - Altura fija: 400px
+   - Contenido centrado (vertical y horizontal)
+   - Superposición oscura (rgba) para mejorar legibilidad del texto
+======================================== */
 .hero {
     position: relative;
     background: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1500&q=80') no-repeat center center/cover;
@@ -50,6 +105,7 @@ nav a:hover {
     text-align: center;
 }
 
+/* Superposición oscura sobre la imagen */
 .hero::before {
     content: "";
     position: absolute;
@@ -61,11 +117,22 @@ nav a:hover {
     z-index: 0;
 }
 
+/* Contenedor del contenido textual */
 .hero-content {
     position: relative;
     z-index: 1;
 }
 
+
+/* ========================================
+   Barra de Búsqueda (search-bar)
+   ----------------------------------------
+   Ubicada debajo del hero, simulando búsqueda rápida:
+   - Posicionada justo debajo del hero (bottom: -30px)
+   - Fondo blanco, bordes redondeados
+   - Sombra para elevar visualmente
+   - Diseño flexible con íconos y botón
+======================================== */
 .search-bar {
     position: absolute;
     bottom: -30px;
@@ -97,12 +164,29 @@ nav a:hover {
     border: none;
 }
 
-/* ---------------- CONTENEDOR PRINCIPAL ---------------- */
+
+/* ========================================
+   Contenedor Principal (container)
+   ----------------------------------------
+   Márgen superior para separar del header
+   Relleno estándar para contenido interno
+======================================== */
 .container {
     margin-top: 80px;
     padding: 2rem;
 }
 
+
+/* ========================================
+   Bloques Destacados (highlight)
+   ----------------------------------------
+   Usado para llamadas a la acción o información clave:
+   - Fondo blanco
+   - Borde izquierdo ancho y color naranja (#ff5722)
+   - Bordes redondeados
+   - Sombra ligera
+   - Espaciado adecuado entre bloques
+======================================== */
 .highlight {
     background: white;
     border-left: 5px solid #ff5722;
@@ -112,6 +196,17 @@ nav a:hover {
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
+
+/* ========================================
+   Botones Principales (cta)
+   ----------------------------------------
+   Botones de acción principal (Call to Action):
+   - Color naranja vibrante (#ff5722)
+   - Bordes redondeados
+   - Sombra suave
+   - Efecto hover: más oscuro + sombra más intensa + elevación
+   - Soporta tanto <button> como <a>
+======================================== */
 .cta {
     background-color: #ff5722;
     padding: 0.8rem 1.5rem;
@@ -131,7 +226,16 @@ nav a:hover {
     transform: translateY(-2px);
 }
 
-/* ---------------- FORMULARIOS ---------------- */
+
+/* ========================================
+   Formularios
+   ----------------------------------------
+   Diseño limpio y consistente:
+   - Fondo blanco
+   - Bordes redondeados
+   - Centrado
+   - Sombra ligera
+======================================== */
 form {
     background-color: white;
     padding: 2rem;
@@ -179,7 +283,16 @@ form button:hover {
     background-color: #008f7a;
 }
 
-/* ---------------- TABLAS ---------------- */
+
+/* ========================================
+   Tablas
+   ----------------------------------------
+   Estilo profesional para tablas de datos:
+   - Bordes redondeados
+   - Sombra ligera
+   - Cabecera azul oscuro
+   - Hover en filas para mejor UX
+======================================== */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -205,7 +318,15 @@ table tbody tr:hover {
     background-color: #f0f0f0;
 }
 
-/* ---------------- MENSAJES ---------------- */
+
+/* ========================================
+   Mensajes de Estado
+   ----------------------------------------
+   Para retroalimentación al usuario:
+   - Éxito: verde
+   - Error: rojo
+   - Centrados y en negrita
+======================================== */
 .success-message {
     color: green;
     font-weight: bold;
@@ -218,7 +339,15 @@ table tbody tr:hover {
     text-align: center;
 }
 
-/*------Modulo Capacitaciones--------- */
+
+/* ========================================
+   Módulo de Capacitaciones (Tarjetas)
+   ----------------------------------------
+   Diseño de cuadrícula para mostrar capacitaciones:
+   - Flexbox con envoltura
+   - Espacio entre tarjetas
+   - Justificación central
+======================================== */
 .card-container {
     display: flex;
     flex-wrap: wrap;
@@ -233,7 +362,7 @@ table tbody tr:hover {
     padding: 1rem;
     width: 280px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    border-left: 5px solid #00bfa6;
+    border-left: 5px solid #00bfa6; /* Línea decorativa izquierda */
 }
 
 .card h3 {
@@ -260,6 +389,15 @@ table tbody tr:hover {
     background-color: #e64a19;
 }
 
+
+/* ========================================
+   Botones Secundarios (btn-secondary)
+   ----------------------------------------
+   Usado para acciones alternativas:
+   - Color turquesa (#00bfa6)
+   - Estilo consistente con otros botones
+   - Efecto hover más oscuro
+======================================== */
 .btn-secondary {
     background-color: #00bfa6;
     color: white;
@@ -275,6 +413,15 @@ table tbody tr:hover {
     background-color: #008f7a;
 }
 
+
+/* ========================================
+   Icono + Título (icon-title)
+   ----------------------------------------
+   Para alinear iconos con títulos (ej. en ODS):
+   - Flexbox
+   - Espacio entre icono y texto
+   - Evita que el icono se contraiga
+======================================== */
 .icon-title {
     display: flex;
     align-items: center;
@@ -285,4 +432,3 @@ table tbody tr:hover {
 .icon-title img {
     flex-shrink: 0;
 }
-

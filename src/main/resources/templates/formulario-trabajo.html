@@ -1,30 +1,46 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <!--
+        Vista: crearTrabajo.html
+        Descripción: Formulario para que un empleador publique un nuevo microempleo.
+        Atributos recibidos (Model):
+        - ${trabajo}: Objeto vacío de tipo Trabajo, usado para enlazar los datos del formulario (data binding).
+    -->
     <head>
         <meta charset="UTF-8">
         <title>Crear Trabajo</title>
         <link rel="stylesheet" th:href="@{/css/style.css}">
     </head>
     <body>
+        <!-- Encabezado con logo de la plataforma -->
         <header>
             <div class="logo">Conecta <span style="color:#00e5ff;">Empleo</span></div>
         </header>
 
+        <!-- Contenedor principal de la sección -->
         <div class="container">
+            <!-- Título visual de la página -->
             <h2>📌 Publicar nuevo empleo</h2>
+
+            <!-- Formulario POST para crear un nuevo trabajo -->
             <form th:action="@{/trabajo/crear}" th:object="${trabajo}" method="post">
+                <!-- Campo: Título del empleo (obligatorio) -->
                 <label>Título:</label>
                 <input type="text" th:field="*{titulo}" required>
 
+                <!-- Campo: Descripción detallada de las tareas y requisitos (obligatorio) -->
                 <label>Descripción:</label>
                 <textarea th:field="*{descripcion}" required></textarea>
 
+                <!-- Campo: Categoría del trabajo (ej. Limpieza, Electricidad, Diseño, etc.) (obligatorio) -->
                 <label>Categoría:</label>
                 <input type="text" th:field="*{categoria}" required>
 
+                <!-- Campo: Ubicación física donde se realizará el trabajo (obligatorio) -->
                 <label>Ubicación:</label>
                 <input type="text" th:field="*{ubicacion}" required>
 
+                <!-- Botón de envío con estilo destacado (CTA) para publicar el trabajo -->
                 <button class="cta" type="submit">Crear Trabajo</button>
             </form>
         </div>

@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+    <!--
+        Vista: reportes.html
+        Descripción: Página de reportes de impacto que muestra métricas clave del sistema.
+        Atributos recibidos (Model):
+        - ${usuariosCount}: Número total de usuarios registrados.
+        - ${trabajosCount}: Número de empleos publicados.
+        - ${postulacionesCount}: Número de postulaciones realizadas.
+        - ${capacitacionesCount}: Número de capacitaciones disponibles.
+        - ${inscripcionesCount}: Número de inscripciones a capacitaciones.
+        - ${maxValor}: Valor máximo entre todas las métricas, usado para normalizar barras.
+    -->
     <head>
         <meta charset="UTF-8">
         <title>Reportes de Impacto</title>
         <link rel="stylesheet" th:href="@{/css/style.css}">
 
-        <!-- Estilos para gráficas simuladas -->
+        <!-- Estilos específicos para gráfica simulada de barras horizontales -->
         <style>
-            /* Estilos para el gráfico simulado */
+            /* Contenedor principal del gráfico */
             .grafica-simulada {
                 margin-top: 30px;
                 padding: 20px;
@@ -15,12 +26,14 @@
                 border-radius: 8px;
             }
 
+            /* Título del gráfico */
             .grafica-simulada h3 {
                 margin-bottom: 15px;
                 color: #333;
                 text-align: center;
             }
 
+            /* Cada fila de la barra (etiqueta + barra progresiva) */
             .barra {
                 display: flex;
                 align-items: center;
@@ -29,14 +42,16 @@
                 color: #333;
             }
 
+            /* Etiqueta izquierda (ej. "Usuarios") */
             .barra span {
                 width: 120px;
                 font-weight: bold;
             }
 
+            /* Barra de progreso visual */
             .valor {
                 height: 24px;
-                background-color: #00e5ff; /* Color base */
+                background-color: #00e5ff;
                 border-radius: 4px;
                 padding: 0 8px;
                 color: white;
@@ -44,45 +59,26 @@
                 text-align: center;
                 min-width: 20px;
                 transition: width 0.5s ease-in-out;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             }
 
-            /* Colores diferenciados para cada barra */
-            .barra:nth-child(1) .valor {
-                background-color: #00e5ff;
-            }
-            .barra:nth-child(2) .valor {
-                background-color: #ff6b6b;
-            }
-            .barra:nth-child(3) .valor {
-                background-color: #ffbe76;
-            }
-            .barra:nth-child(4) .valor {
-                background-color: #7ee8fa;
-            }
-            .barra:nth-child(5) .valor {
-                background-color: #a2d2cc;
-            }
+            /* Colores diferenciados por categoría para mejor visualización */
+            .barra:nth-child(1) .valor { background-color: #00e5ff; } /* Usuarios */
+            .barra:nth-child(2) .valor { background-color: #ff6b6b; } /* Trabajos */
+            .barra:nth-child(3) .valor { background-color: #ffbe76; } /* Postulaciones */
+            .barra:nth-child(4) .valor { background-color: #7ee8fa; } /* Capacitaciones */
+            .barra:nth-child(5) .valor { background-color: #a2d2cc; } /* Inscripciones */
 
-            /* Título del gráfico */
+            /* Estilo adicional para el título del gráfico */
             .grafica-simulada h3 {
                 font-size: 18px;
                 color: #333;
                 text-align: center;
             }
-
-            /* Icono del gráfico */
-            .icono-grafico {
-                display: inline-block;
-                width: 16px;
-                height: 16px;
-                background-color: #00e5ff;
-                margin-right: 5px;
-                border-radius: 2px;
-            }
         </style>
     </head>
     <body>
+        <!-- Encabezado con logo y navegación principal -->
         <header>
             <div class="logo">Conecta <span style="color:#00e5ff;">Empleo</span></div>
             <nav>
@@ -93,8 +89,12 @@
             </nav>
         </header>
 
+        <!-- Contenedor principal -->
         <div class="container">
+            <!-- Título principal de la página -->
             <h2>📊 Reportes de Impacto</h2>
+
+            <!-- Lista de métricas numéricas clave -->
             <ul>
                 <li>Total de usuarios registrados: <strong th:text="${usuariosCount}">0</strong></li>
                 <li>Empleos publicados: <strong th:text="${trabajosCount}">0</strong></li>
@@ -103,9 +103,12 @@
                 <li>Inscripciones a capacitaciones: <strong th:text="${inscripcionesCount}">0</strong></li>
             </ul>
 
+            <!-- Sección de gráfico simulado con barras horizontales -->
             <div class="grafica-simulada">
+                <!-- Título del gráfico visual -->
                 <h3>📊 Gráfico de impacto</h3>
 
+                <!-- Barra: Usuarios registrados -->
                 <div class="barra">
                     <span>Usuarios</span>
                     <div class="valor"
@@ -114,6 +117,7 @@
                     </div>
                 </div>
 
+                <!-- Barra: Empleos publicados -->
                 <div class="barra">
                     <span>Trabajos</span>
                     <div class="valor"
@@ -122,6 +126,7 @@
                     </div>
                 </div>
 
+                <!-- Barra: Postulaciones realizadas -->
                 <div class="barra">
                     <span>Postulaciones</span>
                     <div class="valor"
@@ -130,6 +135,7 @@
                     </div>
                 </div>
 
+                <!-- Barra: Capacitaciones disponibles -->
                 <div class="barra">
                     <span>Capacitaciones</span>
                     <div class="valor"
@@ -138,6 +144,7 @@
                     </div>
                 </div>
 
+                <!-- Barra: Inscripciones a capacitaciones -->
                 <div class="barra">
                     <span>Inscripciones</span>
                     <div class="valor"

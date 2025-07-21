@@ -1,22 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
+    <!--
+        Vista: registro.html
+        Descripción: Formulario para que un nuevo usuario se registre en la plataforma.
+        Atributos recibidos (Model):
+        - ${usuario}: Objeto vacío de tipo Usuario, usado para data binding en el formulario.
+        - ${error}: Mensaje opcional de error (por ejemplo, correo duplicado).
+        - ${mensaje}: Mensaje de éxito tras registro exitoso.
+    -->
     <head>
         <meta charset="UTF-8">
         <title>Registro</title>
         <link rel="stylesheet" th:href="@{/css/style.css}" />
     </head>
     <body>
+        <!-- Título principal de la página -->
         <h2>Registro de Usuario</h2>
+
+        <!-- Formulario POST para registrar un nuevo usuario -->
         <form th:action="@{/usuario/registrar}" th:object="${usuario}" method="post">
+            <!-- Campo: Nombre completo del usuario (obligatorio) -->
             <label>Nombre:</label>
             <input type="text" th:field="*{nombre}" required/><br/>
 
+            <!-- Campo: Correo electrónico (obligatorio, validado como email por el navegador) -->
             <label>Correo:</label>
             <input type="email" th:field="*{correo}" required/><br/>
 
+            <!-- Campo: Contraseña (oculta visualmente, obligatoria) -->
             <label>Contraseña:</label>
             <input type="password" th:field="*{contrasena}" required/><br/>
 
+            <!-- Campo: Rol del usuario dentro del sistema -->
             <label>Rol:</label>
             <select th:field="*{rol}">
                 <option value="TRABAJADOR">Trabajador</option>
@@ -24,23 +39,29 @@
                 <option value="CAPACITADOR">Capacitador</option>
             </select><br/>
 
+            <!-- Campo: Ubicación del usuario (ciudad, barrio, etc.) (obligatorio) -->
             <label>Ubicación:</label>
             <input type="text" th:field="*{ubicacion}" required/><br/>
 
+            <!-- Campo opcional: Experiencia laboral o descripción personal -->
             <label>Experiencia:</label>
             <textarea th:field="*{experiencia}"></textarea><br/>
 
+            <!-- Botón para enviar el formulario y crear la cuenta -->
             <button type="submit">Registrarse</button>
         </form>
 
+        <!-- Enlace a la página de inicio de sesión para usuarios ya registrados -->
         <p>¿Ya tienes una cuenta? <a th:href="@{/usuario/login}">Iniciar sesión</a></p>
 
+        <!-- Mensaje de error (visible solo si hay un problema en el registro) -->
         <div th:if="${error}">
             <p style="color:red;" th:text="${error}"></p>
         </div>
+
+        <!-- Mensaje de éxito (visible solo si el registro fue exitoso) -->
         <div th:if="${mensaje}">
             <p style="color:green;" th:text="${mensaje}"></p>
         </div>
     </body>
 </html>
-

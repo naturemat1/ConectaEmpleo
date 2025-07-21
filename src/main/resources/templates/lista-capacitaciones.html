@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <!--
+        Vista: capacitaciones.html
+        Descripción: Página que muestra todas las capacitaciones disponibles para inscripción.
+        Atributos recibidos (Model):
+        - ${capacitaciones}: Lista de objetos Capacitacion mostrados en tarjetas.
+    -->
     <head>
         <meta charset="UTF-8">
         <title>Capacitaciones</title>
         <link rel="stylesheet" th:href="@{/css/style.css}">
+        <!-- Estilos específicos para esta página: diseño de tarjetas y botones -->
         <style>
+            /* Contenedor flexible para organizar las tarjetas */
             .card-container {
                 display: flex;
                 flex-wrap: wrap;
@@ -13,24 +21,28 @@
                 justify-content: center;
             }
 
+            /* Tarjeta individual de capacitación */
             .card {
                 background: white;
                 border-radius: 10px;
                 padding: 1rem;
                 width: 280px;
                 box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-                border-left: 5px solid #00bfa6;
+                border-left: 5px solid #00bfa6; /* Línea decorativa izquierda */
             }
 
+            /* Título dentro de la tarjeta */
             .card h3 {
                 margin-top: 0;
                 color: #1a237e;
             }
 
+            /* Texto descriptivo en la tarjeta */
             .card p {
                 color: #555;
             }
 
+            /* Botón de acción dentro de la tarjeta */
             .card .cta {
                 margin-top: 1rem;
                 background-color: #ff5722;
@@ -42,12 +54,14 @@
                 cursor: pointer;
             }
 
+            /* Efecto hover del botón: cambio de color al pasar el mouse */
             .card .cta:hover {
                 background-color: #e64a19;
             }
         </style>
     </head>
     <body>
+        <!-- Encabezado con logo y navegación principal -->
         <header>
             <div class="logo">Conecta <span style="color:#00e5ff;">Empleo</span></div>
             <nav>
@@ -58,20 +72,29 @@
             </nav>
         </header>
 
+        <!-- Contenedor principal -->
         <div class="container">
+            <!-- Barra de título y botón de creación -->
             <div style="display: flex; justify-content: space-between; align-items: center;">
+                <!-- Título principal de la página -->
                 <h2 style="color: #1a237e;">📚 Capacitaciones Disponibles</h2>
+                <!-- Enlace para crear una nueva capacitación (visible para administradores o entidades autorizadas) -->
                 <a th:href="@{/capacitaciones/nueva}" class="cta" style="text-decoration: none;">➕ Crear Capacitación</a>
             </div>
 
+            <!-- Contenedor de tarjetas de capacitaciones -->
             <div class="card-container">
+                <!-- Itera sobre la lista de capacitaciones recibidas desde el modelo -->
                 <div class="card" th:each="cap : ${capacitaciones}">
+                    <!-- Título de la capacitación -->
                     <h3 th:text="${cap.titulo}">Título</h3>
+                    <!-- Categoría -->
                     <p><strong>Categoría:</strong> <span th:text="${cap.categoria}">Categoría</span></p>
-                    <p><strong>Fechas:</strong> 
-                        <span th:text="${cap.fecha}">Fecha</span>
-                    </p>
+                    <!-- Fecha de inicio -->
+                    <p><strong>Fechas:</strong> <span th:text="${cap.fecha}">Fecha</span></p>
+                    <!-- Descripción detallada -->
                     <p th:text="${cap.descripcion}">Descripción</p>
+                    <!-- Formulario para inscribirse a la capacitación -->
                     <form th:action="@{/capacitaciones/{id}/inscribirse(id=${cap.id})}" method="post">
                         <button class="cta">Inscribirse</button>
                     </form>

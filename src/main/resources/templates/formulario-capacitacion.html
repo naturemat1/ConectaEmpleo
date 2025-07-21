@@ -1,30 +1,46 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <!--
+        Vista: crearCapacitacion.html
+        Descripción: Formulario para publicar una nueva capacitación en la plataforma.
+        Atributos recibidos (Model):
+        - ${capacitacion}: Objeto vacío de tipo Capacitacion, usado para data binding en el formulario.
+    -->
     <head>
         <meta charset="UTF-8">
         <title>Crear Capacitación</title>
         <link rel="stylesheet" th:href="@{/css/style.css}">
     </head>
     <body>
+        <!-- Encabezado con logo de la plataforma -->
         <header>
             <div class="logo">Conecta <span style="color:#00e5ff;">Empleo</span></div>
         </header>
 
+        <!-- Contenedor principal de la sección -->
         <div class="container">
+            <!-- Título visual de la página -->
             <h2>📚 Publicar nueva capacitación</h2>
+
+            <!-- Formulario POST para crear una nueva capacitación -->
             <form th:action="@{/capacitaciones/crear}" th:object="${capacitacion}" method="post">
+                <!-- Campo: Título de la capacitación (obligatorio) -->
                 <label>Título:</label>
                 <input type="text" th:field="*{titulo}" required>
 
+                <!-- Campo: Descripción detallada de la capacitación (obligatorio) -->
                 <label>Descripción:</label>
                 <textarea th:field="*{descripcion}" required></textarea>
 
+                <!-- Campo: Categoría temática (ej. Tecnología, Oficios, etc.) (obligatorio) -->
                 <label>Categoría:</label>
                 <input type="text" th:field="*{categoria}" required>
 
+                <!-- Campo: Fecha de inicio de la capacitación (seleccionable en formato fecha) -->
                 <label>Fecha de Inicio:</label>
                 <input type="date" th:field="*{fecha}" placeholder="Ej: Julio 2025">
 
+                <!-- Botón de envío con estilo destacado (CTA) para publicar la capacitación -->
                 <button class="cta" type="submit">Crear Capacitación</button>
             </form>
         </div>

@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+    <!--
+        Vista: perfil.html
+        Descripción: Página de perfil del usuario logueado. Muestra información personal, postulaciones activas e inscripciones a capacitaciones.
+        Atributos recibidos (Model):
+        - ${session.usuarioLogueado}: Datos del usuario actual (nombre, rol, calificación promedio).
+        - ${postulaciones}: Lista de postulaciones del usuario a trabajos.
+        - ${inscripciones}: Lista de inscripciones del usuario a capacitaciones.
+    -->
     <head>
         <title>Mi Perfil</title>
         <link rel="stylesheet" th:href="@{/css/style.css}" />
     </head>
     <body>
+        <!-- Encabezado con logo y navegación principal -->
         <header>
             <div class="logo">Conecta <span style="color:#00e5ff;">Empleo</span></div>
             <nav>
@@ -15,16 +24,18 @@
             </nav>
         </header>
         
+        <!-- Contenedor principal del contenido -->
         <div class="container">
+            <!-- Título principal de la página -->
             <h1>Mi Perfil</h1>
 
-            <!-- Mostrar nombre del usuario -->
+            <!-- Nombre del usuario logueado obtenido desde la sesión -->
             <p><strong>Bienvenido:</strong> <span th:text="${session.usuarioLogueado.nombre}"></span></p>
             
-            <!-- Mostrar calificacion promedio del usuario -->
+            <!-- Calificación promedio del usuario (mostrando 'Sin calificar' si no tiene aún) -->
             <h3>Calificación promedio: <span th:text="${session.usuarioLogueado.calificacionPromedio} ?: 'Sin calificar'"></span>/5</h3>
 
-            <!-- Sección de postulaciones -->
+            <!-- Sección: Lista de postulaciones a trabajos -->
             <h2>Mis Postulaciones</h2>
             <table class="table">
                 <thead>
@@ -33,14 +44,17 @@
                         <th>Título</th>
                         <th>Fecha de Postulación</th>
                         <th>Estado</th>
+                        <th>Acción</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- Itera sobre cada postulación del usuario -->
                     <tr th:each="p : ${postulaciones}">
                         <td th:text="${p.trabajo.id}"></td>
                         <td th:text="${p.trabajo.titulo}"></td>
                         <td th:text="${p.fechaPostulacion}"></td>
                         <td th:text="${p.estado}"></td>
+                        <!-- Formulario para aceptar una postulación (por ejemplo, por parte del empleador o sistema) -->
                         <td>
                             <form th:action="@{/trabajo/{id}/aceptar(id=${p.id})}" method="post">
                                 <button type="submit" class="cta">Aceptar</button>
@@ -50,7 +64,7 @@
                 </tbody>
             </table>
 
-            <!-- Sección de inscripciones -->
+            <!-- Sección: Lista de inscripciones a capacitaciones -->
             <h2>Mis Inscripciones</h2>
             <table class="table">
                 <thead>
@@ -58,21 +72,26 @@
                         <th>ID Capacitación</th>
                         <th>Título</th>
                         <th>Fecha de Inscripción</th>
-                        <th>Estado</th>
+                        <th>Estado / Calificación</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- Itera sobre cada inscripción del usuario -->
                     <tr th:each="i : ${inscripciones}">
                         <td th:text="${i.capacitacion.id}"></td>
                         <td th:text="${i.capacitacion.titulo}"></td>
                         <td th:text="${i.capacitacion.fecha}"></td>
+                        <!-- Muestra la calificación del alumno; si no tiene, podría mostrarse como 'En curso' -->
                         <td th:text="${i.calificacionAlumno}"></td>
                     </tr>
                 </tbody>
             </table>
 
+            <!-- Espaciado antes del botón de regreso -->
             <br/>
         </div>
+        
+        <!-- Enlace para volver a la lista de empleos -->
         <a th:href="@{/trabajo}" class="btn-secondary">Volver a empleos</a>
     </body>
 </html>

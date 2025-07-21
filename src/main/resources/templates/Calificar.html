@@ -1,24 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+    <!--
+        Descripción:
+        Esta plantilla permite al usuario (cliente/empleador) asignar una puntuación (1-5)
+        y un comentario opcional sobre el desempeño del trabajador. Los datos se envían
+        mediante POST al controlador correspondiente, asociados a un trabajo específico.
+
+        Atributos recibidos (Model):
+        - ${trabajoId}: ID del trabajo completado, inyectado por el controlador.
+    -->
     <head>
         <title>Calificar Trabajo</title>
+        <!-- Hoja de estilos principal del sistema -->
         <link rel="stylesheet" th:href="@{/css/style.css}" />
     </head>
     <body>
+        <!-- Título principal de la página -->
         <h2>Califica al trabajador</h2>
 
+        <!-- Formulario para enviar la calificación -->
         <form th:action="@{/trabajo/calificar}" method="post">
+            <!-- Campo oculto con el ID del trabajo a calificar -->
             <input type="hidden" name="trabajoId" th:value="${trabajoId}" />
 
+            <!-- Campo de puntuación (obligatorio, rango 1-5) -->
             <label for="puntuacion">Tu calificación (1-5):</label>
             <input type="number" name="puntuacion" min="1" max="5" required>
 
+            <!-- Campo opcional de comentario -->
             <label for="comentario">Comentario (opcional):</label>
             <textarea name="comentario"></textarea>
 
+            <!-- Botón para enviar la calificación -->
             <button type="submit" class="cta">Enviar calificación</button>
         </form>
 
+        <!-- Enlace para regresar al perfil sin calificar -->
         <br/>
         <a th:href="@{/usuario/perfil}" class="btn btn-secondary">Volver a perfil</a>
     </body>

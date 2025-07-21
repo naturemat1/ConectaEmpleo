@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <!--
+        Vista: index.html (página principal)
+        Descripción: Página de inicio de Conecta Empleo, diseñada para atraer tanto a trabajadores como empleadores.
+        Atributos recibidos (Model):
+        - ${categoriaMasDemandada}: Nombre de la categoría con mayor demanda de trabajos (opcional, con fallback a 'Jardinería').
+    -->
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,22 +13,27 @@
         <link rel="stylesheet" th:href="@{/css/style.css}" />
     </head>
     <body>
+        <!-- Encabezado con logo y navegación principal -->
         <header>
             <div class="logo">Conecta <span style="color:#00e5ff;">Empleo</span></div>
             <nav>
                 <a th:href="@{/}">Inicio</a>
                 <a th:href="@{/trabajo}">Empleos</a>
                 <a th:href="@{/capacitaciones}">Capacitaciones</a>
-                <a a th:href="@{/usuario/perfil}" class="btn btn-primary" >Mi Perfil</a>
+                <a th:href="@{/usuario/perfil}" class="btn btn-primary">Mi Perfil</a>
                 <a th:href="@{/usuario/registro}">Registrarse</a>
             </nav>
         </header>
 
+        <!-- Sección hero: mensaje principal y barra de búsqueda destacada -->
         <section class="hero">
+            <!-- Título y mensaje motivacional -->
             <div class="hero-content">
                 <h1>¡Ahora es el momento de cambiar!</h1>
                 <p>Encuentra una nueva forma de ganar dinero, más de <strong>1.407 ofertas</strong></p>
             </div>
+
+            <!-- Formulario de búsqueda personalizada de empleos -->
             <form th:action="@{/trabajo/personalizado}" method="get" class="search-bar">
                 <input type="text" name="categoria" placeholder="💼 Cargo o categoría" />
                 <input type="text" name="ubicacion" placeholder="📍 Lugar" />
@@ -30,33 +41,41 @@
             </form>
         </section>
 
+        <!-- Contenedor principal de las secciones destacadas -->
         <div class="container">
+            <!-- Bloque 1: Encontrar microempleos -->
             <div class="highlight">
                 <h2>🎯 Encuentra microempleos</h2>
                 <p>Explora trabajos informales por categoría y lugar, y postula con confianza.</p>
                 <a class="cta" th:href="@{/trabajo}">Ver ofertas</a>
             </div>
 
+            <!-- Bloque 2: Capacitaciones disponibles -->
             <div class="highlight">
                 <h2>📚 Capacítate con otros trabajadores</h2>
                 <p>Aprende nuevas habilidades de manera práctica y recibe certificados informales.</p>
                 <a class="cta" th:href="@{/capacitaciones}">Inscribirse</a>
             </div>
 
+            <!-- Bloque 3: Categoría con mayor demanda (dinámica) -->
             <div class="highlight">
                 <h2>🔔 Alta demanda en tu zona</h2>
+                <!-- Muestra la categoría más solicitada; si no hay dato, muestra 'Jardinería' por defecto -->
                 <p>La categoría <strong th:text="${categoriaMasDemandada ?: 'Jardinería'}"></strong> está en alta demanda. ¡Capacítate ahora!</p>
                 <a class="cta" th:href="@{/capacitaciones}">Comenzar capacitación</a>
             </div>
 
+            <!-- Bloque 4: Contribución al ODS 1 (Fin de la pobreza) -->
             <div class="highlight">
-
-                <h2><img src="https://th.bing.com/th/id/R.a75315ec5d0038d5ecaf05cfdb38cb69?rik=GGbhVQizq%2b7nOA&pid=ImgRaw&r=0" alt="Icono ODS" width="30" height="30"> Mira cómo ayudas al ODS 1</h2>
-
+                <!-- Icono y título combinados para mostrar impacto social -->
+                <h2>
+                    <img src="https://th.bing.com/th/id/R.a75315ec5d0038d5ecaf05cfdb38cb69?rik=GGbhVQizq%2b7nOA&pid=ImgRaw&r=0" alt="Icono ODS" width="30" height="30"> 
+                    Mira cómo ayudas al ODS 1
+                </h2>
                 <p>Contribuye al desarrollo sostenible mediante empleo inclusivo y crecimiento económico.</p>
+                <!-- Enlace a los reportes de impacto del sistema -->
                 <a class="cta" th:href="@{/reportes}">Ver Reportes</a>
             </div>
-
         </div>
     </body>
 </html>
