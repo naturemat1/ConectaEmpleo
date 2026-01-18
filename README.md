@@ -78,7 +78,3 @@ mvn test
 ## Contribución
 
 Para contribuir, crea un fork del proyecto, realiza tus cambios en una rama y envía un pull request.
-
-## Licencia
-
-Copyright © 2024 Mateo Cobo. Todos los derechos reservados. Este proyecto es de propiedad exclusiva de Mateo Cobo y no puede ser copiado, distribuido o utilizado sin permiso expreso.
