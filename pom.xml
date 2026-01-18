@@ -6,19 +6,28 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.5.3</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/> 
     </parent>
     <groupId>Grupo12</groupId>
     <artifactId>ConectaEmpleo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>ConectaEmpleo</name>
-    <description>Proyecto realizado por Cobo y Guerron para solucionar el ODS 1</description>
+    <description>Proyecto realizado por Mateo Cobo para solucionar el ODS 1</description>
     <url/>
     <licenses>
-        <license/>
+        <license>
+            <name>Proprietary</name>
+            <url/>
+            <comments>Copyright © 2024 Mateo Cobo. All rights reserved.</comments>
+        </license>
     </licenses>
     <developers>
-        <developer/>
+        <developer>
+            <name>Mateo Cobo</name>
+            <email/>
+            <organization/>
+            <organizationUrl/>
+        </developer>
     </developers>
     <scm>
         <connection/>
