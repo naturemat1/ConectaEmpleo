@@ -4,7 +4,6 @@
 
 ConectaEmpleo es una plataforma web desarrollada con Spring Boot que conecta a empleadores y buscadores de empleo, facilitando la publicación de ofertas laborales, postulaciones, capacitaciones y contratos. Este proyecto busca contribuir al Objetivo de Desarrollo Sostenible (ODS) 1: Fin de la Pobreza, al promover el acceso al empleo y mejorar las oportunidades laborales.
 
-Desarrollado por Mateo Cobo.
 
 ## Tecnologías Utilizadas
 
